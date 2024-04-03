@@ -1,2 +1,2 @@
-# app_hospital
+# App para hospital.
 proyecto de programacion.
