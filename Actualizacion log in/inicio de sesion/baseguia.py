@@ -56,12 +56,12 @@ def register():
 root = tk.Tk()
 root.title("Sistema de Inicio de Sesión")
 #Agregamos una imagen como icono e imagen a la pantalla - David
-root.iconbitmap("Cruz.ico")
+root.iconbitmap("Actualizacion log in/inicio de sesion/Cruz.ico")
 
 image_frame = tk.Frame(root)
 image_frame.pack(pady=(20,0))
 
-image = tk.PhotoImage(file="Cruz.gif")
+image = tk.PhotoImage(file="Actualizacion log in/inicio de sesion/Cruz.gif")
 image = image.subsample(2,2)
 label= tk.Label(image_frame, image=image)
 label.pack()
