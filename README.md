@@ -1,2 +1,3 @@
 # App para hospital.
-proyecto de programacion.
+Proyecto de programacion.
+Nicolas Guzman / David Libreros / Alejandro Garzon
