@@ -5,12 +5,21 @@ from Pantalla_citas import VerPantallaCitas
 def main(page: ft.Page):
 
     page.fonts = {
-        "Times New Roman": "Fonts/Freeman-Regular.ttf"
+        "Freeman-Regular": "Fonts/Freeman-Regular.ttf"
     }
     def Ir_Agendar_citas(e):
         page.views.clear()
         page.views.append(VerPantallaCitas(page))
+    def Ir_Citas_agendadas(e):
+        page.views.clear()
+        page.views.append(())
     def Ir_conocer_personal_hospital(e):
+        page.views.clear()
+        page.views.append(())
+    def Ir_conocer_datos_hospital(e):
+        page.views.clear()
+        page.views.append(())
+    def Ir_conocer_historia_hospital(e):
         page.views.clear()
         page.views.append(())
     
@@ -28,17 +37,19 @@ def main(page: ft.Page):
                     ft.MenuItemButton(
                         content=ft.Text("Conoce nuestro equipo"),
                         leading=ft.Icon(ft.icons.PERSON),
-                        style=ft.ButtonStyle(bgcolor={ft.MaterialState.HOVERED: ft.colors.BLUE}),
-                        on_click=Ir_Agendar_citas),
+                        style=ft.ButtonStyle(bgcolor={ft.MaterialState.HOVERED: ft.colors.GREEN}),
+                        on_click=Ir_conocer_personal_hospital),
                     ft.MenuItemButton(
                         content=ft.Text("Conoce nuestras instalaciones"),
                         leading=ft.Icon(ft.icons.COLORIZE),
-                        style=ft.ButtonStyle(bgcolor={ft.MaterialState.HOVERED: ft.colors.GREEN})
+                        style=ft.ButtonStyle(bgcolor={ft.MaterialState.HOVERED: ft.colors.GREEN}),
+                        on_click=Ir_conocer_datos_hospital
                     ),
                     ft.MenuItemButton(
                         content=ft.Text("Conoce nuestra historia"),
                         leading=ft.Icon(ft.icons.COLORIZE),
-                        style=ft.ButtonStyle(bgcolor={ft.MaterialState.HOVERED: ft.colors.RED})
+                        style=ft.ButtonStyle(bgcolor={ft.MaterialState.HOVERED: ft.colors.GREEN}),
+                        on_click=Ir_conocer_historia_hospital
                     )
                 ]
             ),
@@ -52,7 +63,7 @@ def main(page: ft.Page):
                     content=ft.Column(
                         [
                             ft.ElevatedButton(content=ft.Text("Agende sus citas aquí"),on_click=Ir_Agendar_citas),
-                            ft.ElevatedButton("Consulte sus citas aquí"),
+                            ft.ElevatedButton("Consulte sus citas aquí", on_click=Ir_Citas_agendadas),
                             ft.ElevatedButton("Otro botón"),
                         ],
                         spacing=15,
