@@ -32,7 +32,7 @@ def main(page: ft.Page):
         bgcolor=ft.colors.GREEN_800,
         actions=[
             ft.SubmenuButton(
-                content=ft.Text("Conoce más sobre el hospital aquí", color = ft.colors.BLACK, bgcolor=ft.colors.WHITE, style= ft.TextStyle(font_family="Times New Roman"), weight=ft.FontWeight.BOLD),
+                content=ft.Text("Conoce más sobre el hospital aquí", color = ft.colors.BLACK, bgcolor=ft.colors.GREY, style= ft.TextStyle(font_family="Times New Roman"), weight=ft.FontWeight.BOLD),
                 controls=[
                     ft.MenuItemButton(
                         content=ft.Text("Conoce nuestro equipo"),
