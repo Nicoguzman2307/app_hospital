@@ -79,6 +79,9 @@ def main(page: ft.Page):
         if password.value != confirm_password.value:
             show_alert("Error", "Las contraseñas no coinciden")
             return
+        if len(password.value) < 8:
+            show_alert("Error", "Se necesitan 8 o más caracteres para la contraseña")
+            return
         
         conn = sqlite3.connect('database_hospital.db')
         c = conn.cursor()
@@ -140,8 +143,8 @@ def main(page: ft.Page):
         date_picker = ft.DatePicker(
             on_change=change_date,
             on_dismiss=date_picker_dismissed,
-            first_date=datetime.datetime(2023, 10, 1),
-            last_date=datetime.datetime(2024, 10, 1),
+            first_date=datetime.datetime(2024, 5, 20),
+            last_date=datetime.datetime(2024, 6, 30),
         )
 
         page.overlay.append(date_picker)
@@ -184,7 +187,7 @@ def main(page: ft.Page):
         page.add(ft.ElevatedButton(text="Agendar", on_click=schedule_appointment))
         page.add(ft.ElevatedButton(text="Volver al panel de control", on_click=lambda e: dashboard_page(user)))
         page.update()
-    
+     
     # Función para iniciar sesión como médico
     def login_doctor(e):
         code = doctor_code.value
