@@ -120,6 +120,7 @@ def main(page: ft.Page):
         page.add(ft.Text(f"Bienvenido, {user[1]} {user[2]}", size=20))
         page.add(ft.ElevatedButton(text="Conocer sobre el hospital", on_click=lambda e: show_about(user)))
         page.add(ft.ElevatedButton(text="Agendar citas", on_click=lambda e: show_appointments(user)))
+        page.add(ft.ElevatedButton(text="Ver mis citas", on_click=lambda e: show_user_appointments(user)))
         page.update()
     
     # Página para "Conocer sobre el hospital"
@@ -173,6 +174,19 @@ def main(page: ft.Page):
 
             conn = sqlite3.connect('database_hospital.db')
             c = conn.cursor()
+            
+            # Verificar si hay conflictos con otras citas
+            c.execute('''
+                SELECT * FROM appointments
+                WHERE (user_id = ? OR doctor_id = ?) AND date = ? AND time = ?
+            ''', (user[0], int(doctor_id.value), date_picker.value, time_picker.value))
+            conflict = c.fetchone()
+            
+            if conflict:
+                show_alert("Error", "Ya existe una cita a la misma hora para este usuario o doctor")
+                conn.close()
+                return
+
             c.execute('''
                 INSERT INTO appointments (user_id, doctor_id, date, time) VALUES (?, ?, ?, ?)
             ''', (user[0], int(doctor_id.value), date_picker.value, time_picker.value))
@@ -231,28 +245,69 @@ def main(page: ft.Page):
         conn.close()
         
         if appointments:
-                for appointment in appointments:
-                    nombre_completo = f"{appointment[0]} {appointment[1]}"
-                    fecha = appointment[2]
-                    hora = appointment[3]
+            for appointment in appointments:
+                nombre_completo = f"{appointment[0]} {appointment[1]}"
+                fecha = appointment[2]
+                hora = appointment[3]
 
-                    card = ft.Card(
-                        content=ft.Container(
-                            content=ft.Column([
-                                ft.Text(f"Paciente: {nombre_completo}", weight="bold", size=18),
-                                ft.Text(f"Fecha: {fecha}"),
-                                ft.Text(f"Hora: {hora}"),
-                            ]),
-                            padding=10,
-                        ),
-                        elevation=2,
-                    )
+                card = ft.Card(
+                    content=ft.Container(
+                        content=ft.Column([
+                            ft.Text(f"Paciente: {nombre_completo}", weight="bold", size=18),
+                            ft.Text(f"Fecha: {fecha}"),
+                            ft.Text(f"Hora: {hora}"),
+                        ]),
+                        padding=10,
+                    ),
+                    elevation=2,
+                )
 
-                    page.add(card)
+                page.add(card)
         else:
             page.add(ft.Text("No tienes citas programadas"))
         
         page.add(ft.ElevatedButton(text="Volver al panel de control", on_click=lambda e: doctor_dashboard(doctor)))
+        page.update()
+
+    # Página para "Ver mis citas" como usuario
+    def show_user_appointments(user):
+        page.controls.clear()
+        page.add(ft.Text("Mis Citas", size=20))
+        
+        conn = sqlite3.connect('database_hospital.db')
+        c = conn.cursor()
+        c.execute('''
+            SELECT doctors.nombre, appointments.date, appointments.time
+            FROM appointments
+            INNER JOIN doctors ON appointments.doctor_id = doctors.id
+            WHERE user_id = ?
+        ''', (user[0],))
+        appointments = c.fetchall()
+        conn.close()
+        
+        if appointments:
+            for appointment in appointments:
+                nombre_doctor = appointment[0]
+                fecha = appointment[1]
+                hora = appointment[2]
+
+                card = ft.Card(
+                    content=ft.Container(
+                        content=ft.Column([
+                            ft.Text(f"Doctor: {nombre_doctor}", weight="bold", size=18),
+                            ft.Text(f"Fecha: {fecha}"),
+                            ft.Text(f"Hora: {hora}"),
+                        ]),
+                        padding=10,
+                    ),
+                    elevation=2,
+                )
+
+                page.add(card)
+        else:
+            page.add(ft.Text("No tienes citas programadas"))
+        
+        page.add(ft.ElevatedButton(text="Volver al panel de control", on_click=lambda e: dashboard_page(user)))
         page.update()
     
     # Elementos de la interfaz de registro
