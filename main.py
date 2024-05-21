@@ -40,7 +40,7 @@ def init_db():
 
 def main(page: ft.Page):
     page.title = "Hospital - Registro e Inicio de Sesión"
-    
+
     def show_register(e):
         page.controls.clear()
         page.add(register_layout)
@@ -231,8 +231,24 @@ def main(page: ft.Page):
         conn.close()
         
         if appointments:
-            for appointment in appointments:
-                page.add(ft.Text(f"Paciente: {appointment[0]} {appointment[1]}, Fecha: {appointment[2]}, Hora: {appointment[3]}"))
+                for appointment in appointments:
+                    nombre_completo = f"{appointment[0]} {appointment[1]}"
+                    fecha = appointment[2]
+                    hora = appointment[3]
+
+                    card = ft.Card(
+                        content=ft.Container(
+                            content=ft.Column([
+                                ft.Text(f"Paciente: {nombre_completo}", weight="bold", size=18),
+                                ft.Text(f"Fecha: {fecha}"),
+                                ft.Text(f"Hora: {hora}"),
+                            ]),
+                            padding=10,
+                        ),
+                        elevation=2,
+                    )
+
+                    page.add(card)
         else:
             page.add(ft.Text("No tienes citas programadas"))
         
