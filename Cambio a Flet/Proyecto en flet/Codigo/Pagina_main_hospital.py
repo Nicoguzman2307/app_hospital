@@ -1,6 +1,6 @@
 import flet as ft
 from flet import FontWeight
-from Pantalla_citas import VerPantallaCitas
+from Pantalla_instalaciones import VerPantallaInstalaciones
 from Pantalla_personal_hospital import VerPantallaPersonal
 
 def main(page: ft.Page):
@@ -11,7 +11,7 @@ def main(page: ft.Page):
     
     def Ir_Agendar_citas(e):
         page.views.clear()
-        page.views.append(VerPantallaCitas(page))
+        page.views.append(())
         page.update()
         
     def Ir_Citas_agendadas(e):
@@ -21,8 +21,9 @@ def main(page: ft.Page):
         page.views.append(VerPantallaPersonal(page))
         page.update()
     
-    def Ir_conocer_datos_hospital(e):
-        pass
+    def Ir_instalaciones_hospital(e):
+        page.views.append(VerPantallaInstalaciones(page))
+        page.update()
     
     def Ir_conocer_historia_hospital(e):
         pass
@@ -55,7 +56,7 @@ def main(page: ft.Page):
                                 ft.MenuItemButton(
                                     content=ft.Text("Conoce nuestras instalaciones"),
                                     leading=ft.Icon(ft.icons.LOCAL_HOSPITAL),
-                                    on_click=Ir_conocer_datos_hospital
+                                    on_click=Ir_instalaciones_hospital
                                 ),
                                 ft.MenuItemButton(
                                     content=ft.Text("Conoce nuestra historia"),
