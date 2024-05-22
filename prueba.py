@@ -1,6 +1,8 @@
 import flet as ft
 import sqlite3
 import datetime
+import hashlib
+import re
 
 def init_db():
     conn = sqlite3.connect('database_hospital.db')
@@ -40,10 +42,7 @@ def init_db():
 
 def main(page: ft.Page):
     page.title = "Hospital - Registro e Inicio de Sesión"
-    scroll=ft.ScrollMode.ALWAYS,
-    page.fonts = {
-        "Freeman-Regular": "Fonts/Freeman-Regular.ttf"
-    }
+    page.window_maximized = True
 
     def show_register(e):
         page.controls.clear()
@@ -73,26 +72,55 @@ def main(page: ft.Page):
         page.dialog = alert_dialog
         alert_dialog.open = True
         page.update()
+        
+        
+    def is_secure_password(password):
+        # Verificar si la contraseña tiene al menos 8 caracteres
+        if len(password) < 8:
+            return False, "La contraseña debe tener al menos 8 caracteres."
+        
+        # Verificar si la contraseña contiene al menos un número
+        if not any(char.isdigit() for char in password):
+            return False, "La contraseña debe contener al menos un número."
+        
+        # Verificar si la contraseña contiene al menos un carácter especial
+        if not re.search(r'[!@#$%^&*(),.?":{}|<>]', password):
+            return False, "La contraseña debe contener al menos un carácter especial: !@#$%^&*(),.?\":{}|<>"
+        
+        return True, ""
     
     # Función para registrar un nuevo usuario
     def register_user(e):
         if not all([nombre.value, apellidos.value, edad.value, sexo.value, cedula.value, password.value, confirm_password.value]):
-            show_alert("Error", "Todos los campos son obligatorios")
+            show_alert("Error", "Todos los campos son obligatorios.")
             return
-
         if password.value != confirm_password.value:
-            show_alert("Error", "Las contraseñas no coinciden")
+            show_alert("Error", "Las contraseñas no coinciden.")
             return
-        if len(password.value) < 8:
-            show_alert("Error", "Se necesitan 8 o más caracteres para la contraseña")
+        secure, message = is_secure_password(password.value)
+        if not secure:
+            show_alert("Error", message)
+            return
+        if int(edad.value) <= 0:
+            show_alert("Error", "Ingrese una edad válida.")
+            return
+        try:
+            int(cedula.value)
+        except ValueError:
+            show_alert("Error", "La cédula debe contener solo números.")
+            return
+        if len(cedula.value) != 10:
+            show_alert("Error", "La cédula debe tener 10 dígitos.")
             return
         
+        hashed_password = hashlib.sha256(password.value.encode()).hexdigest()
+    
         conn = sqlite3.connect('database_hospital.db')
         c = conn.cursor()
         try:
             c.execute('''
                 INSERT INTO users (nombre, apellidos, edad, sexo, cedula, password) VALUES (?, ?, ?, ?, ?, ?)
-            ''', (nombre.value, apellidos.value, int(edad.value), sexo.value, cedula.value, password.value))
+            ''', (nombre.value, apellidos.value, int(edad.value), sexo.value, cedula.value, hashed_password))
             conn.commit()
             show_alert("Éxito", "Registro exitoso")
         except sqlite3.IntegrityError:
@@ -105,11 +133,13 @@ def main(page: ft.Page):
             show_alert("Error", "Cédula y contraseña son obligatorios")
             return
         
+        hashed_login_password = hashlib.sha256(login_password.value.encode()).hexdigest()
+    
         conn = sqlite3.connect('database_hospital.db')
         c = conn.cursor()
         c.execute('''
             SELECT * FROM users WHERE cedula = ? AND password = ?
-        ''', (login_cedula.value, login_password.value))
+        ''', (login_cedula.value, hashed_login_password))
         user = c.fetchone()
         conn.close()
         
