@@ -236,6 +236,177 @@ def main(page: ft.Page):
         page.add(ft.Container(content=ft.Column(
                     controls=[
                         # Bacteriólogos
+                        
+                        ft.Container(
+                                content=ft.Row(
+                                    controls=[
+                                        ft.Container(
+                                            content=ft.Image(src="../Imagenes/DoctorJuan.jpg", width=400, height=400, fit=ft.ImageFit.CONTAIN),margin=ft.margin.only(left=10)
+                                        ),
+                                        ft.Column(
+                                            controls=[
+                                                ft.Text("Doctor Juan Pérez ", style="headlineSmall", weight=ft.FontWeight.BOLD, color=ft.colors.BLACK),
+                                                ft.Text("ID de doctor: 1", style="headlineSmall", weight=ft.FontWeight.BOLD, color=ft.colors.BLACK),
+                                                ft.Text("Titulos profesionales:", style="headlineSmall", weight=ft.FontWeight.BOLD, color=ft.colors.BLACK),
+                                                ft.Text("Médico Cirujano (Universidad Nacional de Colombia)", style="headlineSmall", weight=ft.FontWeight.BOLD, color=ft.colors.BLACK),
+                                                ft.Text("Especialización en Medicina Interna (Universidad de los Andes)", style="headlineSmall", weight=ft.FontWeight.BOLD, color=ft.colors.BLACK),
+                                                ft.Text(
+                                                    "El Dr. Juan Pérez es un médico general comprometido con brindar atención de alta calidad. Egresado de la Universidad Nacional de Colombia, ha avanzado su formación con una especialización en Medicina Interna y un diplomado en Atención Primaria. Con más de 10 años de experiencia, el Dr. Pérez se destaca por su enfoque empático y personalizado, y su compromiso con la salud comunitaria.", 
+                                                    width=500,
+                                                    height=400, 
+                                                    color=ft.colors.BLACK, 
+                                                    size=20
+                                                ),
+                                            ],
+                                            alignment="start",
+                                            spacing=5,
+                                        ),
+                                    ],
+                                    alignment="start",
+                                    spacing=20,
+                                ),
+                                padding=10,
+                                margin=10,
+                                bgcolor=ft.colors.LIGHT_GREEN_100,
+                                border_radius=8,
+                            ),
+
+                            ft.Container(
+                                content=ft.Row(
+                                    controls=[
+                                        ft.Container(
+                                            content=ft.Image(src="../Imagenes/DoctoraMaria.jpg", width=400, height=400, fit=ft.ImageFit.CONTAIN),margin=ft.margin.only(left=10)
+                                        ),
+                                        ft.Column(
+                                            controls=[
+                                                ft.Text("Doctora María Gómez", style="headlineSmall", weight=ft.FontWeight.BOLD, color=ft.colors.BLACK),
+                                                ft.Text("ID del doctor: 2", style="headlineSmall", weight=ft.FontWeight.BOLD, color=ft.colors.BLACK),
+                                                ft.Text("Titulos profesionales:", style="headlineSmall", weight=ft.FontWeight.BOLD, color=ft.colors.BLACK),
+                                                ft.Text("Médico Cirujano (Universidad del Rosario)", style="headlineSmall", weight=ft.FontWeight.BOLD, color=ft.colors.BLACK),
+                                                ft.Text("Especialización en Pediatría (Universidad de Antioquia)", style="headlineSmall", weight=ft.FontWeight.BOLD, color=ft.colors.BLACK),
+                                                ft.Text(
+                                                    "La Dra. María Gómez es una destacada médica general que egresó de la Universidad del Rosario. Con una especialización en Pediatría de la Universidad de Antioquia y una maestría en Salud Pública de la Universidad de los Andes, la Dra. Gómez combina su profundo conocimiento médico con una pasión por mejorar la salud infantil y comunitaria. Con más de 8 años de experiencia, es conocida por su dedicación y atención cuidadosa hacia sus pacientes jóvenes y sus familias.", 
+                                                    width=500,
+                                                    height=400, 
+                                                    color=ft.colors.BLACK, 
+                                                    size=20
+                                                ),
+                                            ],
+                                            alignment="start",
+                                            spacing=5,
+                                        ),
+                                    ],
+                                    alignment="start",
+                                    spacing=20,
+                                ),
+                                padding=10,
+                                margin=10,
+                                bgcolor=ft.colors.LIGHT_GREEN_100,
+                                border_radius=8,
+                            ),
+
+                            ft.Container(
+                                content=ft.Row(
+                                    controls=[
+                                        ft.Container(
+                                            content=ft.Image(src="../Imagenes/DoctorCarlos.jpg", width=400, height=400, fit=ft.ImageFit.CONTAIN),margin=ft.margin.only(left=10)
+                                        ),
+                                        ft.Column(
+                                            controls=[
+                                                ft.Text("Doctor Carlos López", style="headlineSmall", weight=ft.FontWeight.BOLD, color=ft.colors.BLACK),
+                                                ft.Text("ID del doctor: 3", style="headlineSmall", weight=ft.FontWeight.BOLD, color=ft.colors.BLACK),
+                                                ft.Text("Titulos profesionales:", style="headlineSmall", weight=ft.FontWeight.BOLD, color=ft.colors.BLACK),
+                                                ft.Text("Médico Cirujano (Universidad Nacional de Colombia)", style="headlineSmall", weight=ft.FontWeight.BOLD, color=ft.colors.BLACK),
+                                                ft.Text("Especialización en Cardiología (Universidad Javeriana)", style="headlineSmall", weight=ft.FontWeight.BOLD, color=ft.colors.BLACK),
+                                                ft.Text(
+                                                    " El Dr. Carlos López es un médico general altamente cualificado, egresado de la Universidad Nacional de Colombia. Con una especialización en Cardiología de la Universidad Javeriana y un doctorado en Ciencias Médicas de la Universidad de Antioquia, el Dr. López aporta un vasto conocimiento y experiencia en el campo de la cardiología. Su dedicación a la salud cardiovascular y su compromiso con la excelencia médica le han ganado el respeto de sus pacientes y colegas.", 
+                                                    width=500,
+                                                    height=400, 
+                                                    color=ft.colors.BLACK, 
+                                                    size=20
+                                                ),
+                                            ],
+                                            alignment="start",
+                                            spacing=5,
+                                        ),
+                                    ],
+                                    alignment="start",
+                                    spacing=20,
+                                ),
+                                padding=10,
+                                margin=10,
+                                bgcolor=ft.colors.LIGHT_GREEN_100,
+                                border_radius=8,
+                            ),
+
+                            ft.Container(
+                                content=ft.Row(
+                                    controls=[
+                                        ft.Container(
+                                            content=ft.Image(src="../Imagenes/DoctoraAna.jpg", width=400, height=400, fit=ft.ImageFit.CONTAIN),margin=ft.margin.only(left=10)
+                                        ),
+                                        ft.Column(
+                                            controls=[
+                                                ft.Text("Doctora Ana María Martínez", style="headlineSmall", weight=ft.FontWeight.BOLD, color=ft.colors.BLACK),
+                                                ft.Text("ID del doctor: 4", style="headlineSmall", weight=ft.FontWeight.BOLD, color=ft.colors.BLACK),
+                                                ft.Text("Títulos profesionales: ", style="headlineSmall", weight=ft.FontWeight.BOLD, color=ft.colors.BLACK),
+                                                ft.Text("Médica General (Universidad del Rosario)", style="headlineSmall", weight=ft.FontWeight.BOLD, color=ft.colors.BLACK),
+                                                ft.Text("Especialización en Pediatría (Universidad de los Andes)", style="headlineSmall", weight=ft.FontWeight.BOLD, color=ft.colors.BLACK),
+                                                ft.Text("Especialización en Cardiología (Universidad Javeriana)", style="headlineSmall", weight=ft.FontWeight.BOLD, color=ft.colors.BLACK),
+                                                ft.Text(
+                                                    " La Dra. Ana María Martínez es una médica general dedicada, egresada de la Universidad del Rosario. También cuenta con una especialización en Medicina Interna de la Universidad Nacional de Colombia. Con varios años de experiencia en atención primaria y medicina interna, la Dra. Martínez se destaca por su enfoque integral y su dedicación a la salud y el bienestar de sus pacientes. Su compromiso y habilidades hacen de ella una profesional confiable y altamente valorada en nuestro equipo.", 
+                                                    width=500,
+                                                    height=400, 
+                                                    color=ft.colors.BLACK, 
+                                                    size=20
+                                                ),
+                                            ],
+                                            alignment="start",
+                                            spacing=5,
+                                        ),
+                                    ],
+                                    alignment="start",
+                                    spacing=20,
+                                ),
+                                padding=10,
+                                margin=10,
+                                bgcolor=ft.colors.LIGHT_GREEN_100,
+                                border_radius=8,
+                            ),
+
+                            ft.Container(
+                                content=ft.Row(
+                                    controls=[
+                                        ft.Container(
+                                            content=ft.Image(src="../Imagenes/Doctor José.jpg", width=400, height=400, fit=ft.ImageFit.CONTAIN),margin=ft.margin.only(left=10)
+                                        ),
+                                        ft.Column(
+                                            controls=[
+                                                ft.Text("Doctor José Fernández", style="headlineSmall", weight=ft.FontWeight.BOLD, color=ft.colors.BLACK),
+                                                ft.Text("ID del doctor: 5", style="headlineSmall", weight=ft.FontWeight.BOLD, color=ft.colors.BLACK),
+                                                ft.Text("Títulos profesionales: ", style="headlineSmall", weight=ft.FontWeight.BOLD, color=ft.colors.BLACK),
+                                                ft.Text("Médico Internista (Universidad del Norte)", style="headlineSmall", weight=ft.FontWeight.BOLD, color=ft.colors.BLACK),
+                                                ft.Text("Especialización en Cardiología (Universidad Javeriana)", style="headlineSmall", weight=ft.FontWeight.BOLD, color=ft.colors.BLACK),
+                                                ft.Text(
+                                                    "El Dr. José Fernández es un médico internista egresado de la Universidad del Norte, con una especialización en Cardiología de la Universidad Javeriana. Con más de 15 años de experiencia, el Dr. Fernández se especializa en el diagnóstico y tratamiento de enfermedades del corazón. Su enfoque compasivo y detallado en la atención médica garantiza que sus pacientes reciban el mejor cuidado posible.", 
+                                                    width=500,
+                                                    height=400, 
+                                                    color=ft.colors.BLACK, 
+                                                    size=20
+                                                ),
+                                            ],
+                                            alignment="start",
+                                            spacing=5,
+                                        ),
+                                    ],
+                                    alignment="start",
+                                    spacing=20,
+                                ),
+                                padding=10,
+                                margin=10,
+                                bgcolor=ft.colors.LIGHT_GREEN_100,
+                                border_radius=8,
+                            ),
                         ft.Container(
                             content=ft.Row(
                                 controls=[
