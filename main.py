@@ -83,6 +83,9 @@ def main(page: ft.Page):
         if not any(char.isdigit() for char in password):
             return False, "La contraseña debe contener al menos un número."
         
+        if not any(char.isalpha() for char in password):
+            return False, "La contraseña debe contener al menos una letra."
+        
         # Verificar si la contraseña contiene al menos un carácter especial
         if not re.search(r'[!@#$%^&*(),.?":{}|<>]', password):
             return False, "La contraseña debe contener al menos un carácter especial: !@#$%^&*(),.?\":{}|<>"
@@ -1045,7 +1048,7 @@ def main(page: ft.Page):
         date_picker = ft.DatePicker(
             on_change=change_date,
             on_dismiss=date_picker_dismissed,
-            first_date=datetime.datetime(2024, 5, 21),
+            first_date=datetime.datetime(2024, 5, 29),
             last_date=datetime.datetime(2024, 6, 30),
         )
 
@@ -1066,7 +1069,13 @@ def main(page: ft.Page):
                 ft.dropdown.Option("17:00")
             ]
         )
-        doctor_id = ft.TextField(label="ID del Doctor")
+        doctor_id = ft.Dropdown(
+            label="Seleccione el ID del doctor (Puede revisar el id de nustros doctores en la pestaña ´Conoce Nuestro Equipo´)",
+            options=[
+                ft.dropdown.Option("1"), ft.dropdown.Option("2"), ft.dropdown.Option("3"),
+                ft.dropdown.Option("4"), ft.dropdown.Option("5")
+                ]
+        )
 
         def schedule_appointment(e):
             if not (date_picker.value and time_picker.value and doctor_id.value):
